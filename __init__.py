@@ -3,11 +3,11 @@
 
 # Thermocalc files parsing utility
 # ==================
-# 
+#
 # Provides:
 # * parse a file into a pandas dataframe
 # * report on composition of the alloy based on the parsed dataframe
-# 
+#
 # Report contains:
 # * First all present phases
 #     TC phase name | chem. comp (avg) | chem. comp (with ranges)
@@ -209,7 +209,13 @@ def parse_tc_data(
             convert_composition(df,from_molar_to_mass_per_100g=True)
         if not has_molar_composition(df.columns):
             convert_composition(df,from_molar_to_mass_per_100g=False)
-    return df
+
+    columns = df.columns
+    for firstcol in [ "region", "T" ]:
+        if firstcol in columns:
+            columns = [ firstcol, ] + [ c for c in columns if c != firstcol ]
+
+    return df[columns]
 
 
 
