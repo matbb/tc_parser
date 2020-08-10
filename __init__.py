@@ -219,23 +219,4 @@ def parse_tc_data(
 
 
 
-def convert_composition_from_molar_to_mass_per_100g(composition):
-    import periodictable as pt
-    mass_composition = {}
-    for el,mol in composition.items():
-        atomic_mass = pt.elements.symbol(element_to_symbol(el)).mass
-        mass_composition[el] = mol * atomic_mass
-    total_g = np.sum(list(mass_composition.values()))
-    mass_composition_100g = { el : m/total_g*100.0 for el, m in mass_composition.items() }
-    return mass_composition_100g
-
-def convert_composition_from_mass_per_100g_to_molar(composition):
-    import periodictable as pt
-    mol_composition = {}
-    for el, mass in composition.items():
-        atomic_mass = pt.elements.symbol(element_to_symbol(el)).mass
-        mol_composition[el] = mass / atomic_mass
-    sum_mol = sum( [ val for val in mol_composition.values() ] )
-    mol_composition_x = { el : mol/sum_mol for el, mol in mol_composition.items() }
-    return mol_composition_x
 
