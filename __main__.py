@@ -67,7 +67,7 @@ if __name__ == "__main__":
             plt.plot( df["T"].values, df["NP("+phase+")"].values,
                      label=phase )
         plt.legend()
-        plt.xlabel("T[C]")
+        plt.xlabel("T[K]")
         plt.ylabel("NP(phase)")
         xlim = plt.xlim()
         plt.xlim(xlim[1], xlim[0])
@@ -84,7 +84,7 @@ if __name__ == "__main__":
                 plt.plot( df["T"].values, df["X("+phase+","+el+")"].values,
                         label=el )
             plt.legend()
-            plt.xlabel("T[C]")
+            plt.xlabel("T[K]")
             plt.ylabel("X("+phase+",element)")
             xlim = plt.xlim()
             plt.xlim(xlim[1], xlim[0])
