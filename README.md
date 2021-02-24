@@ -26,7 +26,7 @@ This project does not handle thermodynamic databases (`.tdb`) files.
 
 # Usage
 
-To convert an intut file into a `.csv`, one can do
+To convert a file into `.csv` format:
 ```
 $ python3 -m tc_parser <in file>.txt <out file>.csv
 ```
