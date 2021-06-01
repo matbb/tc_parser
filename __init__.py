@@ -188,7 +188,15 @@ def parse_tc_data(
             columns = [x.split("=")[1][:-1]
                        for x in re.findall("col-[0-9]*=[^ ]*,", columns)]
             data = reg[idata+1:]
-            dff = pd.read_table(io.StringIO(data), names=columns, sep="\s+")
+            dff = pd.read_table(
+                io.StringIO(data),
+                names=columns,
+                sep=r"\s+",
+                na_values=[
+                    "NONE",
+                ],
+            )
+            dff.fillna(value=0.0, inplace=True)
             dff["region"] = i_reg
             i_reg += 1
             dff["Tx100"] = np.rint(dff["T"] * 100).astype(int)
