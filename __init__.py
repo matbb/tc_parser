@@ -205,6 +205,11 @@ def parse_tc_data(
             if df is None:
                 df = dff
             else:
+                # When concatenating, fill missing columns with 0
+                for col in set(dff.columns).difference(df.columns):
+                    df[col] = 0.
+                for col in set(df.columns).difference(dff.columns):
+                    dff[col] = 0
                 df = pd.concat([df, dff])
         if phase_region_keep != "both":
             df = df.loc[~df.index.duplicated(keep=phase_region_keep)]
