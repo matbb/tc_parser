@@ -196,7 +196,6 @@ def parse_tc_data(
                     "NONE",
                 ],
             )
-            dff.fillna(value=0.0, inplace=True)
             dff["region"] = i_reg
             i_reg += 1
             dff["Tx100"] = np.rint(dff["T"] * 100).astype(int)
